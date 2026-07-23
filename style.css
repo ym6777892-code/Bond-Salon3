@@ -1,0 +1,761 @@
+/* ============================================
+   BOND SALON - Premium Barbershop Website
+   Luxury Black, White & Gold Theme
+   Arabic RTL Layout
+   ============================================ */
+
+/* ========== CSS Variables ========== */
+:root {
+  --gold: #D4AF37;
+  --gold-light: #E8C84A;
+  --gold-dark: #B8962E;
+  --gold-glow: rgba(212, 175, 55, 0.25);
+  --black: #000000;
+  --black-light: #0A0A0A;
+  --white: #FFFFFF;
+  --gray-50: #FAFAFA;
+  --gray-100: #F5F5F5;
+  --gray-200: #EEEEEE;
+  --gray-300: #E0E0E0;
+  --gray-400: #BDBDBD;
+  --gray-500: #9E9E9E;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.08);
+  --shadow-gold: 0 8px 32px rgba(212, 175, 55, 0.20);
+  --shadow-gold-lg: 0 12px 40px rgba(212, 175, 55, 0.30);
+  --shadow-whatsapp: 0 8px 32px rgba(37, 211, 102, 0.25);
+  --shadow-whatsapp-lg: 0 12px 40px rgba(37, 211, 102, 0.35);
+  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+}
+
+/* ========== Reset & Base ========== */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--black);
+  color: var(--white);
+  overflow-x: hidden;
+  min-height: 100vh;
+  line-height: 1.6;
+}
+
+/* ========== Page Transition Overlay ========== */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--black);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-slow);
+}
+
+.page-transition.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.page-transition .spinner {
+  width: 48px;
+  height: 48px;
+  border: 2px solid var(--gray-800);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ========== Homepage ========== */
+.home-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.home-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Gold Line Decorations */
+.gold-line-top,
+.gold-line-bottom {
+  position: absolute;
+  width: 1px;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.gold-line-top { top: 0; }
+.gold-line-bottom { bottom: 0; }
+
+/* ========== Logo ========== */
+.logo-container {
+  position: relative;
+  margin-bottom: 24px;
+  animation: fadeInDown 1s ease-out;
+}
+
+.logo-container img {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 4px 20px rgba(212, 175, 55, 0.15));
+  transition: transform var(--transition-slow), filter var(--transition-slow);
+}
+
+.logo-container img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 6px 30px rgba(212, 175, 55, 0.25));
+}
+
+/* ========== Shop Name ========== */
+.shop-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  text-align: center;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+.shop-name .gold-text {
+  color: var(--gold);
+}
+
+/* ========== Subtitle ========== */
+.subtitle {
+  font-family: 'Cairo', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  text-align: center;
+  margin-bottom: 50px;
+  letter-spacing: 0.5px;
+  animation: fadeInUp 1s ease-out 0.35s both;
+}
+
+/* ========== Divider ========== */
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 50px;
+  animation: fadeInUp 1s ease-out 0.45s both;
+}
+
+.divider-line {
+  width: 50px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
+.divider-line:last-child {
+  background: linear-gradient(to left, transparent, var(--gold));
+}
+
+.divider-icon {
+  color: var(--gold);
+  font-size: 0.85rem;
+}
+
+/* ========== Buttons Container ========== */
+.buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-width: 360px;
+  animation: fadeInUp 1s ease-out 0.55s both;
+}
+
+/* ========== Premium Button Base ========== */
+.premium-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 36px;
+  border-radius: var(--radius-md);
+  font-family: 'Cairo', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.12), transparent);
+  transition: left 0.6s ease;
+}
+
+.premium-btn:hover::before {
+  left: 100%;
+}
+
+.premium-btn i {
+  font-size: 1.2rem;
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: var(--white);
+  box-shadow: var(--shadow-whatsapp);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-whatsapp-lg);
+}
+
+/* Prices Button */
+.btn-prices {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--black);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn-prices:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-gold-lg);
+}
+
+/* ========== Homepage Footer ========== */
+.home-footer {
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  animation: fadeIn 1s ease-out 0.9s both;
+}
+
+.home-footer p {
+  font-size: 0.78rem;
+  color: var(--gray-600);
+  line-height: 1.8;
+}
+
+.home-footer .gold-copy {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ========== Prices Page ========== */
+.prices-page {
+  min-height: 100vh;
+  display: none;
+  flex-direction: column;
+  background: var(--gray-50);
+  opacity: 0;
+  transition: opacity var(--transition-slow);
+}
+
+.prices-page.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* ========== Prices Header ========== */
+.prices-header {
+  background: var(--black);
+  padding: 28px 20px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.prices-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--gray-50));
+}
+
+.prices-header .logo-small {
+  width: 55px;
+  height: auto;
+  margin-bottom: 10px;
+  filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.2));
+}
+
+.prices-header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+
+.prices-header h1 .gold-text {
+  color: var(--gold);
+}
+
+.prices-header .header-subtitle {
+  font-size: 0.9rem;
+  color: var(--gray-400);
+  font-weight: 400;
+}
+
+/* ========== Back Button ========== */
+.back-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 18px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 175, 55, 0.25);
+  border-radius: var(--radius-sm);
+  color: var(--gold);
+  font-family: 'Cairo', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-decoration: none;
+}
+
+.back-btn:hover {
+  background: rgba(212, 175, 55, 0.12);
+  border-color: var(--gold);
+  transform: translateX(-3px);
+}
+
+/* ========== Prices Content ========== */
+.prices-content {
+  padding: 36px 16px 50px;
+  max-width: 680px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* ========== Section Title ========== */
+.section-title {
+  text-align: center;
+  margin-bottom: 36px;
+}
+
+.section-title h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.section-title .gold-underline {
+  width: 55px;
+  height: 3px;
+  background: linear-gradient(to right, var(--gold), var(--gold-dark));
+  margin: 0 auto;
+  border-radius: 2px;
+}
+
+/* ========== Services Grid ========== */
+.services-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ========== Service Card ========== */
+.service-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 20px;
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cardFadeIn 0.5s ease forwards;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--gold), var(--gold-dark));
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.service-card:hover {
+  transform: translateY(-3px) translateX(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold);
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-icon {
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: linear-gradient(135deg, var(--gray-100), var(--white));
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  font-size: 1.1rem;
+  transition: all var(--transition-fast);
+}
+
+.service-card:hover .service-icon {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  color: var(--black);
+  border-color: var(--gold);
+  transform: scale(1.1);
+}
+
+.service-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  margin-bottom: 2px;
+  line-height: 1.4;
+}
+
+.service-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--gold-dark);
+  white-space: nowrap;
+  direction: ltr;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.service-price .currency {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+
+/* ========== Prices Footer ========== */
+.prices-footer {
+  background: var(--black);
+  padding: 28px 20px;
+  text-align: center;
+  margin-top: auto;
+}
+
+.prices-footer p {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  line-height: 1.8;
+}
+
+.prices-footer .gold-copy {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ========== Keyframes ========== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes cardFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-dark);
+}
+
+/* ========== Selection ========== */
+::selection {
+  background: var(--gold);
+  color: var(--black);
+}
+
+/* ========== Responsive - Tablet ========== */
+@media (min-width: 768px) {
+  .logo-container img {
+    width: 190px;
+  }
+
+  .shop-name {
+    font-size: 3.2rem;
+    letter-spacing: 5px;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 55px;
+  }
+
+  .divider {
+    margin-bottom: 55px;
+  }
+
+  .divider-line {
+    width: 55px;
+  }
+
+  .buttons-container {
+    max-width: 400px;
+    gap: 20px;
+  }
+
+  .premium-btn {
+    padding: 20px 44px;
+    font-size: 1.2rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .premium-btn i {
+    font-size: 1.3rem;
+  }
+
+  .home-footer p {
+    font-size: 0.85rem;
+  }
+
+  .prices-header {
+    padding: 32px 24px 56px;
+  }
+
+  .prices-header .logo-small {
+    width: 65px;
+  }
+
+  .prices-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .prices-header .header-subtitle {
+    font-size: 1rem;
+  }
+
+  .back-btn {
+    top: 22px;
+    right: 22px;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .prices-content {
+    padding: 44px 28px 60px;
+  }
+
+  .section-title {
+    margin-bottom: 42px;
+  }
+
+  .section-title h2 {
+    font-size: 1.8rem;
+  }
+
+  .services-grid {
+    gap: 14px;
+  }
+
+  .service-card {
+    padding: 18px 26px;
+    border-radius: var(--radius-lg);
+  }
+
+  .service-icon {
+    width: 50px;
+    height: 50px;
+    min-width: 50px;
+    font-size: 1.2rem;
+  }
+
+  .service-name {
+    font-size: 1.05rem;
+  }
+
+  .service-price {
+    font-size: 1.25rem;
+  }
+
+  .prices-footer {
+    padding: 32px 24px;
+  }
+
+  .prices-footer p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========== Responsive - Desktop ========== */
+@media (min-width: 1024px) {
+  .logo-container img {
+    width: 210px;
+  }
+
+  .shop-name {
+    font-size: 3.8rem;
+    letter-spacing: 6px;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+  }
+
+  .buttons-container {
+    max-width: 420px;
+  }
+
+  .prices-content {
+    max-width: 720px;
+    padding: 50px 32px 70px;
+  }
+
+  .section-title h2 {
+    font-size: 2rem;
+  }
+
+  .service-card {
+    padding: 20px 30px;
+  }
+
+  .service-name {
+    font-size: 1.1rem;
+  }
+
+  .service-price {
+    font-size: 1.3rem;
+  }
+}
+
+/* ========== Reduced Motion ========== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
